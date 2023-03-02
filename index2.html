@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Voter Eligibility Form</title>
+    <script>
+        function validateForm() {
+            var name = document.forms["voterForm"]["name"].value;
+            var mobile = document.forms["voterForm"]["mobile"].value;
+            var address = document.forms["voterForm"]["address"].value;
+            var age = document.forms["voterForm"]["age"].value;
+            var nameRegex = /^[a-zA-Z\s]+$/;
+            var mobileRegex = /^\d{10}$/;
+
+            if (name == "" || mobile == "" || address == "" || age == "") {
+                alert("All fields are required");
+                return false;
+            }
+            if (!nameRegex.test(name)) {
+                alert("Name should contain only alphabets and spaces");
+                return false;
+            }
+            if (!mobileRegex.test(mobile)) {
+                alert("Mobile number should contain 10 digits");
+                return false;
+            }
+            if (age < 18) {
+                alert("You must be at least 18 years old to be eligible to vote");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Voter Eligibility Form</h2>
+    <form name="voterForm" onsubmit="return validateForm()">
+        <label for="name">User Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="mobile">Mobile No:</label><br>
+        <input type="text" id="mobile" name="mobile" required><br>
+
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" required><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+
+        <input type="submit" value="Check Eligibility">
+    </form>
+</body>
+
+</html>
